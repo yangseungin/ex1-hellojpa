@@ -17,30 +17,43 @@ public class JpaMain {
 
         try {
 
-//            등록
-//            Member member = new Member();
-//            member.setId(3L);//long값이라 L붙임
-//            member.setName("helloC");
+//            쿼리가 한번만 실행됨
+            Member findmember1 = em.find(Member.class, 101L);//sql조회
+            Member findmember2 = em.find(Member.class, 101L);//1차캐시조회
+
+//            영속 엔티티의 동일성 보장
+            System.out.println("result = " + (findmember2==findmember2));
+
+//            쓰기지연
+//            Member memberA=new Member(150L,"A");
+//            Member memberB=new Member(160L,"B");
+//
+//
+//            em.persist(memberA);
+//            em.persist(memberB);
+
+//            엔티티 수정 - 변경감지
+//                Member member = em.find(Member.class,160L);
+//                member.setName("zzzzzz");
+
+//            플러시
+//            Member member = new Member(200L,"member200");
 //            em.persist(member);
+//
+//            em.flush();
 
-//            찾기
-//            Member findMember = em.find(Member.class, 1L);
-//            System.out.println("findMember = " + findMember.getId());
-//            System.out.println("findMember = " + findMember.getName());
+            Member member = em.find(Member.class,160L);
+            member.setName("AAAAA");
 
-//            수정
-//            Member findMember = em.find(Member.class, 1L);
-//            findMember.setName("HelloJPA"); //커밋하는 시점에 변화가있는지 jpa가 확인하기때문에 따로 작업을 하지 않는다
+            //jpa에서 관리하지 않음. - > 아래에서 커밋할떄 아무일도 일어나지 않음
+            em.detach(member);
 
-//            JPQL
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(8)
-                    .getResultList();
 
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+
+            System.out.println("=========="); // 선 출력이후 쿼리가 나
+
+//                변경이후 새로 저장하는 코드를 쓰지않는다
+//            em.persist(member);
 
 
             tx.commit();
