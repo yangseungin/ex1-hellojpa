@@ -33,9 +33,20 @@ public class JpaMain {
 //            em.persist(memberB);
 
 //            엔티티 수정 - 변경감지
-                Member member = em.find(Member.class,160L);
-                member.setName("zzzzzz");
+//                Member member = em.find(Member.class,160L);
+//                member.setName("zzzzzz");
 
+//            플러시
+//            Member member = new Member(200L,"member200");
+//            em.persist(member);
+//
+//            em.flush();
+
+            Member member = em.find(Member.class,160L);
+            member.setName("AAAAA");
+
+            //jpa에서 관리하지 않음. - > 아래에서 커밋할떄 아무일도 일어나지 않음
+            em.detach(member);
 
 
 
