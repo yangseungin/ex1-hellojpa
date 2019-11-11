@@ -16,44 +16,14 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Member member = new Member();
+//            member.setId(111L);
+//            member.setUsername("A");
+//            member.setRoleType(RoleType.USER);
+            member.setUsername("B");
 
-//            쿼리가 한번만 실행됨
-            Member findmember1 = em.find(Member.class, 101L);//sql조회
-            Member findmember2 = em.find(Member.class, 101L);//1차캐시조회
-
-//            영속 엔티티의 동일성 보장
-            System.out.println("result = " + (findmember2==findmember2));
-
-//            쓰기지연
-//            Member memberA=new Member(150L,"A");
-//            Member memberB=new Member(160L,"B");
-//
-//
-//            em.persist(memberA);
-//            em.persist(memberB);
-
-//            엔티티 수정 - 변경감지
-//                Member member = em.find(Member.class,160L);
-//                member.setName("zzzzzz");
-
-//            플러시
-//            Member member = new Member(200L,"member200");
-//            em.persist(member);
-//
-//            em.flush();
-
-            Member member = em.find(Member.class,160L);
-            member.setName("AAAAA");
-
-            //jpa에서 관리하지 않음. - > 아래에서 커밋할떄 아무일도 일어나지 않음
-            em.detach(member);
-
-
-
-            System.out.println("=========="); // 선 출력이후 쿼리가 나
-
-//                변경이후 새로 저장하는 코드를 쓰지않는다
-//            em.persist(member);
+            em.persist(member);
+            System.out.println("==========");
 
 
             tx.commit();
