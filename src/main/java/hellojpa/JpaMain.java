@@ -20,9 +20,7 @@ public class JpaMain {
 //            member.setId(111L);
 //            member.setUsername("A");
 //            member.setRoleType(RoleType.USER);
-            member.setId(112L);
             member.setUsername("B");
-            member.setRoleType(RoleType.ADMIN);
 
             em.persist(member);
             System.out.println("==========");
