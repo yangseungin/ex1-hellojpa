@@ -26,6 +26,7 @@ public class JpaMain {
 //            member.changeTeam(team);
             em.persist(member);
 
+
             team.adddMember(member);
 
 
