@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -19,26 +18,32 @@ public class JpaMain {
             //저장
             Team team = new Team();
             team.setName("TeamA");
+//            team.getMembers().add(member); // 연관관계의 주인이 아니기떄문에 저장할 수 없
             em.persist(team);
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+//            member.changeTeam(team);
             em.persist(member);
+
+            team.adddMember(member);
+
+
 
             em.flush();
             em.clear();
 
 
 
-            Member findMember = em.find(Member.class, member.getId());
+//            Member findMember = em.find(Member.class, member.getId());
+//
+//            List<Member> members = findMember.getTeam().getMembers();
+//
+//            System.out.println("-------@@@-");
+//            for (Member m : members) {
+//                System.out.println("m.getUsername() = " + m.getUsername());
+//            }
 
-            List<Member> members = findMember.getTeam().getMembers();
-
-            System.out.println("-------@@@-");
-            for (Member m : members) {
-                System.out.println("m.getUsername() = " + m.getUsername());
-            }
 
 
             tx.commit();
