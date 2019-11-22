@@ -15,15 +15,20 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = saveMember(em);
 
-            Team team = new Team();
-            team.setName("teamA");
-            //
-            team.getMembers().add((member));
+            Movie movie = new Movie();
+            movie.setDirector("aaa");
+            movie.setActor("bbb");
+            movie.setName("바람");
+            movie.setPrice(10000);
 
-            em.persist(team);
+            em.persist(movie);
+            
+            em.flush();
+            em.clear();
 
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            System.out.println("findMovie = " + findMovie);
 
 
             tx.commit();
