@@ -1,21 +1,22 @@
 package jpabook.jpashop.domain;
 
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-//@Entity
-public class OrderItem {
+@Entity
+public class OrderItem extends BaseEntity {
 
-//    @Id @GeneratedValue
-//    @Column(name = "ORDER_ITEM_ID")
+    @Id @GeneratedValue
+    @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "ORDER_ID")
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-//    @ManyToOne
-//    @JoinColumn(name = "ITEM_ID")
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ID")
     private Item item;
 
     private int orderPrice;
