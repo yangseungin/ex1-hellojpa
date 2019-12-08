@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class Item {
 
-    @Id @GeneratedValue
-    @Column(name = "ITEM_ID")
+//    @Id @GeneratedValue
+//    @Column(name = "ITEM_ID")
     private Long id;
 
     private String name;
     private int prpice;
     private int stockQuantity;
 
-    @ManyToMany(mappedBy = "items")
+//    @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
 
