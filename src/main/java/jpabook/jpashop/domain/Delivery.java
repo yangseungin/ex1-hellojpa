@@ -1,14 +1,16 @@
 package jpabook.jpashop.domain;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-//@Entity
-public class  Delivery {
+@Entity
+public class  Delivery extends BaseEntity {
 
-//    @Id @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
     private String city;
@@ -17,7 +19,7 @@ public class  Delivery {
 
     private DeliveryStatus status;
 
-//    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery")
     private Order order;
 
 }
